@@ -7,9 +7,7 @@ import { Input } from "./ui/input";
 import { generateMnemonic } from "bip39";
 import { useRouter } from "next/navigation";
 
-
 const MnemonicInput: React.FC = () => {
-
   const router = useRouter();
   const [wallet, setWallet] = useRecoilState(walletState);
   const [mnemonic, setMnemonic] = useRecoilState(mnemonicState);
@@ -34,13 +32,15 @@ const MnemonicInput: React.FC = () => {
                 onClick={async function () {
                   const mn = generateMnemonic();
                   setMnemonic((prevMnemonic) => {
-                    console.log(prevMnemonic)
                     const newMnemonic = mn.split(" ");
-                    console.log("Updated Mnemonic:", newMnemonic);
                     return newMnemonic;
                   });
-                  console.log(mnemonic)
-                  router.replace("/wallet")
+                  setMnemonic((prevMnemonic) => {
+                    const newMnemonic = mn.split(" ");
+                    return newMnemonic;
+                  });
+
+                  router.replace("/wallet");
                 }}
               >
                 Create Seed Phrase

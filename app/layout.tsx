@@ -5,6 +5,7 @@ import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/Footer";
+import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,9 +35,10 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        
+        <Providers>
         {children}
         <Footer />
+        </Providers>
       </body>
     </html>
   );
