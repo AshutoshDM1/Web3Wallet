@@ -10,22 +10,11 @@ import { Providers } from "./providers";
 const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Kosh",
-  description: "Your Personal Web3 Wallet.",
-  icons: [
-    {
-      rel: "icon",
-      type: "image/x-icon",
-      url: "/favicon-light.ico",
-      media: "(prefers-color-scheme: light)",
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      url: "/favicon-dark.ico",
-      media: "(prefers-color-scheme: dark)",
-    },
-  ],
+  title: "Web3Wallet",
+  description: "It is a Web3 Wallet Website",
+  icons: {
+    icon: "/Web3 Wallet Favicon.png",
+  },
 };
 
 export default function RootLayout({

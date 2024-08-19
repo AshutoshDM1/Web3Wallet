@@ -27,7 +27,10 @@ const MnemonicInput: React.FC = () => {
               Save these words in a safe place.
             </h1>
             <div className="flex  gap-4">
-              <Input placeholder="Enter your secret phrase Or Leave it Blank to Generate" />
+              <Input
+                className="dark:bg-black dark:border-white "
+                placeholder="Enter your secret phrase Or Leave it Blank to Generate"
+              />
               <Button
                 onClick={async function () {
                   const mn = generateMnemonic();

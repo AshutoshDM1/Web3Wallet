@@ -9,19 +9,39 @@ import { Keypair } from "@solana/web3.js";
 import { Trash } from "lucide-react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { useRouter } from "next/navigation";
 
 const AddWallet = () => {
+
+  const router = useRouter();
   const [WalletNo, setWalletNo] = useRecoilState(walletNoState);
   const mnemonic = useRecoilValue(mnemonicState);
-  const getwallet = useRecoilValue(walletState);
+  const [getwallet , setwallet ] = useRecoilState(walletState);
 
   const hanldeRemoveAllWallets = () => {
     setWalletNo([]);
+    toast.warning("All Wallets Removed");
   };
 
   const hanldeRemoveWallets = (index: number) => {
     setWalletNo(WalletNo.filter((_, i) => i !== index));
+    toast.warning(`Wallet No-${index + 1} Removed `);
   };
+const hanldeChangeWalletsType = () => {
+  setwallet("")
+  router.push("/")
+}
   let walletType;
   if (getwallet === "Ethereum") {
     walletType = 501;
@@ -30,7 +50,6 @@ const AddWallet = () => {
   } else {
     walletType = 0;
   }
-  console.log(walletType);
   const handleAddWallet = () => {
     const seed = mnemonicToSeedSync(mnemonic.join(" "));
     const path = `m/44'/${walletType}'/${WalletNo.length}'/0'`;
@@ -53,18 +72,57 @@ const AddWallet = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.3 , delay:0.8 }}
+          transition={{ duration: 0.3, delay: 0.8 }}
           className="h-fit w-full py-8 flex flex-wrap gap-5 justify-between items-center"
         >
           <h1 className="text-5xl font-bold">{wallet} Wallet</h1>
           <div className="flex gap-4">
             <Button onClick={handleAddWallet}>Add Wallet</Button>
-            <Button
-              onClick={hanldeRemoveAllWallets}
-              className="bg-red-600 hover:bg-red-500"
-            >
-              Remove All Wallets
-            </Button>
+
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button className="bg-red-600 hover:bg-red-500">
+                  Remove All Wallets
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone. This will permanently delete
+                    your All Your wallet keys .
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={hanldeRemoveAllWallets}>
+                    Continue
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button className="bg-blue-600 hover:bg-blue-500">
+                  Change Bitcoin
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone. This will permanently delete
+                    all Your Wallet and all Keys.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={hanldeChangeWalletsType}>
+                    Continue
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         </motion.div>
         <div className="min-h-[65vh] max-h-fit w-full flex flex-col gap-8 pb-10">

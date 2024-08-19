@@ -18,10 +18,26 @@ const Navbar = () => {
           </span>
         </div>
       </div>
-      <div className="items-center gap-2 justify-center flex">
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/keshav-exe/projekt-kosh"
+      >
         <h1 className="font-bold text-2xl tracking-tighter leading-none hidden md:block">
-          Member
+          Inspired By Kosh
         </h1>
+      </a>
+      <div className="items-center gap-2 justify-center flex">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/AshutoshDM1/Web3Wallet"
+        >
+          <h1 className="font-bold text-2xl tracking-tighter leading-none hidden md:block">
+            My GitHub
+          </h1>
+        </a>
+
         <Avatar className="hidden md:block">
           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
           <AvatarFallback>CN</AvatarFallback>
