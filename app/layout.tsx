@@ -1,25 +1,31 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
-import { Inter as FontSans } from "next/font/google";
-import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 import Footer from "@/components/Footer";
+import { ThemeProvider } from "@/components/theme-provider";
+import { RecoilRoot } from "recoil";
 import { Providers } from "./providers";
 
-const inter = Inter({ subsets: ["latin"] });
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Web3Wallet",
-  description: "It is a Web3 Wallet Website",
-  icons: {
-    icon: "/Web3 Wallet Favicon.png",
-  },
+  title: "Kosh",
+  description: "Your Personal Web3 Wallet.",
+  icons: [
+    {
+      rel: "icon",
+      type: "image/x-icon",
+      url: "/favicon-light.ico",
+      media: "(prefers-color-scheme: light)",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      url: "/favicon-dark.ico",
+      media: "(prefers-color-scheme: dark)",
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -29,16 +35,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={cn(
-          "min-h-screen bg-white dark:bg-[#0A0A0A] font-sans antialiased",
-          fontSans.variable
-        )}
-      >
-        <Providers>
-        {children}
-        <Footer />
-        </Providers>
+      <body className={`${manrope.className} dark:bg-[#0A0A0A]`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Providers>
+            <Toaster />
+
+            {children}
+          </Providers>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

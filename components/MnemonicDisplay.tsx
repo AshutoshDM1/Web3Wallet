@@ -23,7 +23,7 @@ const MnemonicDisplay: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="min-h-[20vh] border-[1px] border-[#6363637c] rounded-md w-full gap-10 p-8"
+            className="min-h-fit border-[1px] border-[#6363637c] w-full rounded-md gap-10 p-8 "
           >
             <div className="flex justify-between ">
               <h1 className="text-3xl font-bold">Your Secret Phrase</h1>
@@ -67,7 +67,7 @@ const MnemonicDisplay: React.FC = () => {
                     </p>
                   ))}
                 </motion.div>
-                <div className="text-sm md:text-base text-primary/50 flex w-full gap-2 items-center group-hover:text-primary/80 transition-all duration-300">
+                <div className="cursor-pointer text-sm md:text-base text-primary/50 flex w-full gap-2 items-center group-hover:text-primary/80 transition-all duration-300">
                   <Copy className="size-4" /> Click Anywhere To Copy
                 </div>
               </motion.div>

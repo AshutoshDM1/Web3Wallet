@@ -6,7 +6,7 @@ import { ModeToggle } from "./ModeToggle";
 
 const Navbar = () => {
   return (
-    <nav className="h-[8vh] w-full flex justify-between px-1 md:px-6  items-center ">
+    <nav className="h-[8vh] w-full flex justify-between  items-center ">
       <div className="flex  justify-center items-center  gap-2">
         <Box className="size-8" />
         <div className="flex flex-col gap-4">
@@ -22,11 +22,11 @@ const Navbar = () => {
         <h1 className="font-bold text-2xl tracking-tighter leading-none hidden md:block">
           Member
         </h1>
-        <Avatar className="hidden md:block" >
+        <Avatar className="hidden md:block">
           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <ModeToggle/>
+        <ModeToggle />
       </div>
     </nav>
   );

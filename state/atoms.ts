@@ -5,7 +5,6 @@ export const walletState = atom<string>({
   default: "",
 });
 
-
 export const mnemonicState = atom<string[]>({
   key: "mnemonic",
   default: [
@@ -22,4 +21,16 @@ export const mnemonicState = atom<string[]>({
     "wet",
     "oven",
   ],
+});
+
+type Wallet = {
+  privateKey: string;
+  publicKey: string;
+};
+
+type walletNo = Wallet[];
+
+export const walletNoState = atom<walletNo>({
+  key: "walletNoState",
+  default: [],
 });
