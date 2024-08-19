@@ -23,11 +23,10 @@ import {
 import { useRouter } from "next/navigation";
 
 const AddWallet = () => {
-
   const router = useRouter();
   const [WalletNo, setWalletNo] = useRecoilState(walletNoState);
   const mnemonic = useRecoilValue(mnemonicState);
-  const [getwallet , setwallet ] = useRecoilState(walletState);
+  const [getwallet, setwallet] = useRecoilState(walletState);
 
   const hanldeRemoveAllWallets = () => {
     setWalletNo([]);
@@ -38,10 +37,10 @@ const AddWallet = () => {
     setWalletNo(WalletNo.filter((_, i) => i !== index));
     toast.warning(`Wallet No-${index + 1} Removed `);
   };
-const hanldeChangeWalletsType = () => {
-  setwallet("")
-  router.push("/")
-}
+  const hanldeChangeWalletsType = () => {
+    setwallet("");
+    router.push("/");
+  };
   let walletType;
   if (getwallet === "Ethereum") {
     walletType = 501;
@@ -76,9 +75,8 @@ const hanldeChangeWalletsType = () => {
           className="h-fit w-full py-8 flex flex-wrap gap-5 justify-between items-center"
         >
           <h1 className="text-5xl font-bold">{wallet} Wallet</h1>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4 ">
             <Button onClick={handleAddWallet}>Add Wallet</Button>
-
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button className="bg-red-600 hover:bg-red-500">
