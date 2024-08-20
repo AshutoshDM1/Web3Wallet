@@ -1,4 +1,3 @@
-import { Switch } from "@/components/ui/switch";
 import { Box } from "lucide-react";
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -6,13 +5,13 @@ import { ModeToggle } from "./ModeToggle";
 
 const Navbar = () => {
   return (
-    <nav className="h-[8vh] w-full flex justify-between  items-center ">
-      <div className="flex  justify-center items-center  gap-2">
-        <Box className="size-8" />
+    <nav className="md:h-[8vh] h-[4vh] w-full flex justify-between items-center ">
+      <div className="flex justify-center items-center gap-2">
+        <Box className="md:size-8 size-6" />
         <div className="flex flex-col gap-4">
-          <span className="md:text-3xl tracking-tighter text-2xl font-extrabold text-primary flex gap-2 items-center">
+          <span className="md:text-3xl tracking-tighter text-lg font-extrabold text-primary flex gap-2 items-center">
             Web3 Wallet{" "}
-            <span className="rounded-full text-sm md:text-base flex gap-1 bg-primary/10 border border-primary/50 px-2">
+            <span className="rounded-full text-xs md:text-base flex gap-1 bg-primary/10 border border-primary/50 px-2">
               v 1.0.0
             </span>
           </span>

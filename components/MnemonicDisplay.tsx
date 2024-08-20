@@ -1,5 +1,5 @@
 "use client";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { mnemonicState } from "@/state/atoms";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "./ui/button";
@@ -8,7 +8,7 @@ import { ChevronDown, ChevronUp, Copy } from "lucide-react";
 import { toast } from "sonner"
 
 const MnemonicDisplay: React.FC = () => {
-  const [mnemonic, setMnemonic] = useRecoilState(mnemonicState);
+  const mnemonic = useRecoilValue(mnemonicState);
   const [showMnemonic, setShowMnemonic] = useState(false);
   const copyToClipboard = (content: string) => {
     navigator.clipboard.writeText(content);
@@ -22,11 +22,11 @@ const MnemonicDisplay: React.FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="min-h-fit border-[1px] border-[#6363637c] w-full rounded-md gap-10 p-8 "
+            transition={{ duration: 0.5, delay: 1 }}
+            className="min-h-fit border-[1px] border-[#6363637c] w-full rounded-md gap-10 md:p-8 p-3"
           >
-            <div className="flex justify-between ">
-              <h1 className="text-3xl font-bold">Your Secret Phrase</h1>
+            <div className="flex justify-between items-center">
+              <h1 className="md:text-3xl text-2xl font-bold">Your Secret Phrase</h1>
               <Button
                 onClick={() => setShowMnemonic(!showMnemonic)}
                 variant="ghost"
@@ -50,10 +50,10 @@ const MnemonicDisplay: React.FC = () => {
                 onClick={() => copyToClipboard(mnemonic.join(" "))}
               >
                 <motion.div
-                  initial={{ opacity: 0, y: -20 }}
+                  initial={{ opacity: 0, y: -25 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    duration: 0.3,
+                    duration: 0.5,
                     ease: "easeInOut",
                   }}
                   className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 justify-center w-full items-center mx-auto my-8"

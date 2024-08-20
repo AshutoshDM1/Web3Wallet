@@ -6,7 +6,7 @@ import MnemonicInput from "@/components/MnemonicInput";
 export default function Home() {
   return (
     <>
-      <div className="max-w-7xl mx-auto flex flex-col gap-4 p-4 min-h-[96vh] dark:bg-[#0A0A0A]">
+      <div className="max-w-7xl mx-auto flex flex-col gap-4 p-4 min-h-[92vh] dark:bg-[#0A0A0A]">
         <Navbar />
         <BlockChain />
         <MnemonicInput />

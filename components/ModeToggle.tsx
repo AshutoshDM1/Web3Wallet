@@ -21,17 +21,16 @@ export function ModeToggle() {
       window.matchMedia("(prefers-color-scheme: dark)").matches);
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center md:gap-2 gap-0.5">
       <Sun
-        className={`h-5 w-5 ${isDarkMode ? "text-primary/50" : "text-primary"}`}
+        className={`h-5 w-5 ${isDarkMode ? "text-primary" : "text-primary"}`}
       />
-      <Switch
-        
+      <Switch 
         checked={isDarkMode}
         onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
       />
       <Moon
-        className={`h-5 w-5 ${isDarkMode ? "text-primary" : "text-primary/50"}`}
+        className={`h-5 w-5 ${isDarkMode ? "text-primary" : "text-primary"}`}
       />
     </div>
   );

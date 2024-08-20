@@ -72,14 +72,14 @@ const AddWallet = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3, delay: 0.8 }}
-          className="h-fit w-full py-8 flex flex-wrap gap-5 justify-between items-center"
+          className="h-fit w-full py-8 flex flex-wrap gap-5 md:justify-between justify-center items-center"
         >
-          <h1 className="text-5xl font-bold">{wallet} Wallet</h1>
-          <div className="flex flex-wrap gap-4 ">
-            <Button onClick={handleAddWallet}>Add Wallet</Button>
+          <h1 className="md:text-5xl text-4xl font-bold ">{wallet} Wallet</h1>
+          <div className="flex flex-wrap md:gap-4 gap-2">
+            <Button className="sm:w-auto w-full" onClick={handleAddWallet}>Add Wallet</Button>
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button className="bg-red-600 hover:bg-red-500">
+                <Button className="sm:w-auto w-full bg-red-600 hover:bg-red-500">
                   Remove All Wallets
                 </Button>
               </AlertDialogTrigger>
@@ -101,7 +101,7 @@ const AddWallet = () => {
             </AlertDialog>
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button className="bg-blue-600 hover:bg-blue-500">
+                <Button className="sm:w-auto w-full bg-blue-600 hover:bg-blue-500">
                   Change Bitcoin
                 </Button>
               </AlertDialogTrigger>
@@ -123,7 +123,7 @@ const AddWallet = () => {
             </AlertDialog>
           </div>
         </motion.div>
-        <div className="min-h-[65vh] max-h-fit w-full flex flex-col gap-8 pb-10">
+        <div className="min-h-[65vh] max-h-fit w-full flex flex-col md:gap-8 gap-4 pb-10">
           {WalletNo.map((wallet, index) => (
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -131,7 +131,7 @@ const AddWallet = () => {
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.5 }}
               key={index}
-              className="h-fit p-8 border-[1px] border-[#6363637c] rounded-xl w-full flex-col flex justify-center items-center"
+              className="h-fit md:p-8 p-4 border-[1px] border-[#6363637c] rounded-xl w-full flex-col flex justify-center items-center"
             >
               <div className="w-full flex justify-between items-center">
                 <h1 className="text-3xl font-semibold flex justify-center items-center">
@@ -139,18 +139,18 @@ const AddWallet = () => {
                 </h1>
                 <Button
                   onClick={() => hanldeRemoveWallets(index)}
-                  className="px-2"
+                  className="px-2 rounded-full text-white bg-red-600 hover:bg-red-700"
                 >
                   <Trash className="text-3xl w-full h-full" />
                 </Button>
               </div>
-              <div className="h-fit w-full pt-10">
-                <h1 className="text-2xl font-semibold flex items-center pb-5">
+              <div className="h-fit w-full md:pt-10 pt-5">
+                <h1 className="md:text-2xl text-lg font-semibold flex items-center md:pb-5">
                   Public Key
                 </h1>
                 <h2 className="break-words">{wallet.publicKey}</h2>{" "}
                 {/* Added break-words */}
-                <h1 className="text-2xl pt-8 font-semibold flex items-center pb-5">
+                <h1 className="md:text-2xl text-lg md:pt-8 pt-4 font-semibold flex items-center md:pb-5">
                   Private Key
                 </h1>
                 <h2 className="break-words">{wallet.privateKey}</h2>
