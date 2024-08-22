@@ -126,12 +126,15 @@ const AddWallet = () => {
         <div className="min-h-[65vh] max-h-fit w-full flex flex-col gap-8 pb-10">
           {WalletNo.map((wallet, index) => (
             <motion.div
+            onClick={()=>{ 
+              router.push(`wallet/${index}`)
+             }}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.5 }}
               key={index}
-              className="h-fit p-8 border-[1px] border-[#6363637c] rounded-xl w-full flex-col flex justify-center items-center"
+              className="h-fit cursor-pointer p-8 border-[1px] border-[#6363637c] rounded-xl w-full flex-col flex justify-center items-center"
             >
               <div className="w-full flex justify-between items-center">
                 <h1 className="text-3xl font-semibold flex justify-center items-center">
@@ -149,7 +152,6 @@ const AddWallet = () => {
                   Public Key
                 </h1>
                 <h2 className="break-words">{wallet.publicKey}</h2>{" "}
-                {/* Added break-words */}
                 <h1 className="text-2xl pt-8 font-semibold flex items-center pb-5">
                   Private Key
                 </h1>
