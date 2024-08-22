@@ -4,7 +4,6 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
-import { RecoilRoot } from "recoil";
 import { Providers } from "./providers";
 
 const manrope = Manrope({ subsets: ["latin"] });

@@ -3,7 +3,8 @@
 
 ## Tech Stack -
 #### Next.js + TypeScript + Shadcn + Framer Motion
-#### Some Web3 Libraries - bip39 , @solana/web3.js , nacl , ed25519-hd-key
+#### Some Web3 Libraries - bip39 , @solana/web3.js , nacl , ed25519-hd-keyz
+#### API integration - Helius
 
 ## Design is Inspired by - [Kesav](https://github.com/keshav-exe/projekt-kosh)
 #### A Very Thanks to Him
