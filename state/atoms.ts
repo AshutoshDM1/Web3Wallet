@@ -1,4 +1,5 @@
-import { atom } from "recoil";
+import { getBalance } from "@/services/api";
+import { atom, selector } from "recoil";
 
 export const walletState = atom<string>({
   key: "wallet",
@@ -24,6 +25,7 @@ export const mnemonicState = atom<string[]>({
 });
 
 type Wallet = {
+
   privateKey: string;
   publicKey: string;
 };

@@ -42,14 +42,6 @@ const BlockChain: React.FC<BlockChainProps> = () => {
               >
                 Ethereum
               </Button>
-              <Button
-                onClick={() => {
-                  setWallet("Bitcoin");
-                }}
-                className="md:w-28 w-full"
-              >
-                Bitcoin
-              </Button>
             </div>
           </motion.div>
         ) : null}
