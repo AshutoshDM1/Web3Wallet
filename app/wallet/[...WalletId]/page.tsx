@@ -10,12 +10,9 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 
-type WalletProps = {
-  WalletID: number;
-  PublicKey: string;
-};
 
-const Wallet: React.FC<WalletProps> = () => {
+
+const Wallet: React.FC = () => {
   const [balance, setBalance] = useState(0.0);
 
   let getwallet = useRecoilValue(walletState);
