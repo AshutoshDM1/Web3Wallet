@@ -1,9 +1,7 @@
 "use client";
 import Navbar from "@/components/Navbar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { walletState } from "@/state/atoms";
 import { ArrowLeftRight, Copy, HandCoins, SendHorizontal } from "lucide-react";
-import { useRecoilValue } from "recoil";
 import { useParams } from "next/navigation";
 import { getBalance } from "@/services/api";
 import { useEffect, useState } from "react";
