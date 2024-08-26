@@ -6,12 +6,14 @@ import { motion, AnimatePresence } from "framer-motion";
 
 type BlockChainProps = {};
 const BlockChain: React.FC<BlockChainProps> = () => {
-  const [wallet, setWallet] = useRecoilState(walletState);
+  const [walletSee, setWalletsee] = useRecoilState(walletState);
+  const wallet = localStorage.getItem("wallet");
+  console.log(wallet)
 
   return (
     <>
       <AnimatePresence>
-        {wallet === "" ? (
+        {walletSee === "" ? (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -28,7 +30,8 @@ const BlockChain: React.FC<BlockChainProps> = () => {
             <div className="flex flex-wrap md:gap-4 gap-2">
               <Button
                 onClick={() => {
-                  setWallet("Solana");
+                  setWalletsee("Solana");
+                  localStorage.setItem("wallet", "Solana");
                 }}
                 className="md:w-24 w-full"
               >
@@ -36,7 +39,8 @@ const BlockChain: React.FC<BlockChainProps> = () => {
               </Button>
               <Button
                 onClick={() => {
-                  setWallet("Ethereum");
+                  setWalletsee("Ethereum");
+                  localStorage.setItem("wallet", "Ethereum");
                 }}
                 className="md:w-28 w-full"
               >

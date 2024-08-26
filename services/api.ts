@@ -19,7 +19,7 @@ const HandleError = (error: any): void => {
   }
 };
 
-export const getBalance = async (key: string, url: string) => {
+export const getBalance = async (key: string, url: string | null) => {
   let MainURL: string | undefined = "";
   let dataCall = null;
 
@@ -27,14 +27,14 @@ export const getBalance = async (key: string, url: string) => {
     jsonrpc: "2.0",
     id: 1,
     method: "getBalance",
-    params: ["Eg4F6LW8DD3SvFLLigYJBFvRnXSBiLZYYJ3KEePDL95Q"],
+    params: [key],
   };
 
   const dataEth = {
     jsonrpc: "2.0",
     id: 1,
     method: "eth_getBalance",
-    params: ["0xaeaa570b50ad00377ff8add27c50a7667c8f1811", "latest"],
+    params: [key, "latest"],
   };
 
   if (url === "Solana") {

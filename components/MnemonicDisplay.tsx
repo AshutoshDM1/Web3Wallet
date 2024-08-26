@@ -22,7 +22,7 @@ const MnemonicDisplay: React.FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: 1 }}
+            transition={{ duration: 0.5, delay: .3 }}
             className="min-h-fit border-[1px] border-[#6363637c] w-full rounded-md gap-10 md:p-8 p-3"
           >
             <div className="flex justify-between items-center">

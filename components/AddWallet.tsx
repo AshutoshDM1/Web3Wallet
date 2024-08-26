@@ -6,7 +6,8 @@ import nacl from "tweetnacl";
 import { mnemonicToSeedSync } from "bip39";
 import { derivePath } from "ed25519-hd-key";
 import { Keypair } from "@solana/web3.js";
-import { Trash } from "lucide-react";
+import { ethers } from "ethers";
+import { Eye, EyeOff, Trash } from "lucide-react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -21,43 +22,60 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const AddWallet = () => {
   const router = useRouter();
   const [WalletNo, setWalletNo] = useRecoilState(walletNoState);
+  const [Wallet, setWallet] = useRecoilState(walletState);
+  const [show, setShow] = useState(true);
   const mnemonic = useRecoilValue(mnemonicState);
-  const [getwallet, setwallet] = useRecoilState(walletState);
 
-  const hanldeRemoveAllWallets = () => {
+  const getwallet = localStorage.getItem("wallet");
+
+  const handleRemoveAllWallets = () => {
     setWalletNo([]);
     toast.warning("All Wallets Removed");
   };
 
-  const hanldeRemoveWallets = (index: number) => {
+  const handleRemoveWallets = (index: number) => {
     setWalletNo(WalletNo.filter((_, i) => i !== index));
     toast.warning(`Wallet No-${index + 1} Removed `);
   };
-  const hanldeChangeWalletsType = () => {
-    setwallet("");
+
+  const handleChangeWalletType = () => {
+    localStorage.removeItem("wallet");
+    setWallet("");
+    setWalletNo([]);
+    toast.warning("All Wallets Removed , Select You Bitcoin");
     router.push("/");
   };
-  let walletType;
-  if (getwallet === "Ethereum") {
-    walletType = 501;
-  } else if (getwallet === "Solana") {
-    walletType = 44;
-  } else {
-    walletType = 0;
-  }
+
+  const walletType =
+    getwallet === "Ethereum" ? 60 : getwallet === "Solana" ? 501 : 0;
+
   const handleAddWallet = () => {
     const seed = mnemonicToSeedSync(mnemonic.join(" "));
-    const path = `m/44'/${walletType}'/${WalletNo.length}'/0'`;
-    const derivedSeed = derivePath(path, seed.toString("hex")).key;
-    const keyPair = nacl.sign.keyPair.fromSeed(derivedSeed);
-    const publicKey = Keypair.fromSecretKey(
-      keyPair.secretKey
-    ).publicKey.toBase58();
-    const privateKey = Buffer.from(keyPair.secretKey).toString("hex");
+
+    let publicKey, privateKey;
+
+    if (walletType === 501) {
+      const path = `m/44'/${walletType}'/${WalletNo.length}'/0'`;
+      const derivedSeed = derivePath(path, seed.toString("hex")).key;
+      const keyPair = nacl.sign.keyPair.fromSeed(derivedSeed);
+      publicKey = Keypair.fromSecretKey(keyPair.secretKey).publicKey.toBase58();
+      privateKey = Buffer.from(keyPair.secretKey).toString("hex");
+    } else if (walletType === 60) {
+      const path = `m/44'/${walletType}'/${WalletNo.length}'/0'/0`;
+      const mnemonicObj = ethers.Mnemonic.fromPhrase(mnemonic.join(" "));
+      const wallet = ethers.HDNodeWallet.fromMnemonic(mnemonicObj, path);
+      publicKey = wallet.address;
+      privateKey = wallet.privateKey;
+    } else {
+      toast.error("Unsupported wallet type");
+      return;
+    }
+
     setWalletNo([...WalletNo, { publicKey, privateKey }]);
     toast.success("New Wallet Created");
   };
@@ -75,9 +93,8 @@ const AddWallet = () => {
           className="h-fit w-full py-8 flex flex-wrap gap-5 justify-between items-center"
         >
           <h1 className="text-5xl font-bold">{wallet} Wallet</h1>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             <Button onClick={handleAddWallet}>Add Wallet</Button>
-
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button className="bg-red-600 hover:bg-red-500">
@@ -89,12 +106,12 @@ const AddWallet = () => {
                   <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                   <AlertDialogDescription>
                     This action cannot be undone. This will permanently delete
-                    your All Your wallet keys .
+                    all your wallet keys.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={hanldeRemoveAllWallets}>
+                  <AlertDialogAction onClick={handleRemoveAllWallets}>
                     Continue
                   </AlertDialogAction>
                 </AlertDialogFooter>
@@ -103,7 +120,7 @@ const AddWallet = () => {
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button className="bg-blue-600 hover:bg-blue-500">
-                  Change Bitcoin
+                  Change Wallet Type
                 </Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
@@ -111,12 +128,12 @@ const AddWallet = () => {
                   <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                   <AlertDialogDescription>
                     This action cannot be undone. This will permanently delete
-                    all Your Wallet and all Keys.
+                    all your wallets and keys.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={hanldeChangeWalletsType}>
+                  <AlertDialogAction onClick={handleChangeWalletType}>
                     Continue
                   </AlertDialogAction>
                 </AlertDialogFooter>
@@ -140,13 +157,15 @@ const AddWallet = () => {
                 </h1>
                 <div className="flex gap-3">
                   <Button
-                    onClick={() => router.push(`wallet/${index + 1}/${wallet.publicKey}`)}
-                    className="px-4  "
+                    onClick={() =>
+                      router.push(`wallet/${index + 1}/${wallet.publicKey}`)
+                    }
+                    className="px-4"
                   >
                     Select Wallet
                   </Button>
                   <Button
-                    onClick={() => hanldeRemoveWallets(index)}
+                    onClick={() => handleRemoveWallets(index)}
                     className="px-2"
                   >
                     <Trash className="text-3xl w-full h-full" />
@@ -157,12 +176,30 @@ const AddWallet = () => {
                 <h1 className="text-2xl font-semibold flex items-center pb-5">
                   Public Key
                 </h1>
-                <h2 className="break-words">{wallet.publicKey}</h2>{" "}
-                {/* Added break-words */}
+                <h2 className="break-words">{wallet.publicKey}</h2>
                 <h1 className="text-2xl pt-8 font-semibold flex items-center pb-5">
                   Private Key
                 </h1>
-                <h2 className="break-words">{wallet.privateKey}</h2>
+                <div className="flex items-center justify-between ">
+                  {show ? (
+                    <h2 className="break-words">
+                      ••••••••••••••••••••••••••••••••••••••••••••••••••••••
+                    </h2>
+                  ) : (
+                    <h2 className="break-words">{wallet.privateKey}</h2>
+                  )}
+                  {show ? (
+                    <Eye
+                      className="cursor-pointer"
+                      onClick={() => setShow(!show)}
+                    />
+                  ) : (
+                    <EyeOff
+                      className="cursor-pointer"
+                      onClick={() => setShow(!show)}
+                    />
+                  )}
+                </div>
               </div>
             </motion.div>
           ))}

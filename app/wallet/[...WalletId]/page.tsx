@@ -10,15 +10,10 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 
-
-
 const Wallet: React.FC = () => {
   const [balance, setBalance] = useState(0.0);
 
-  let getwallet = useRecoilValue(walletState);
-  if (getwallet === "") {
-    getwallet = "Solana";
-  }
+  let getwallet: string | null = localStorage.getItem("wallet");
 
   const { WalletId } = useParams<{ WalletId: string[] }>();
 
@@ -65,18 +60,15 @@ const Wallet: React.FC = () => {
             </div>
             <div className="flex justify-center gap-5 w-full">
               <h1 className="text-2xl font-semibold ">Public key</h1>
-              <Copy 
-              onClick={()=>copyToClipboard(WalletId[1])}
-              className="cursor-pointer mt-2 "
-              
+              <Copy
+                onClick={() => copyToClipboard(WalletId[1])}
+                className="cursor-pointer mt-2 "
               />
               <h1 className="text-lg font-light break-words flex-wrap w-[50%] mt-1">
                 {WalletId?.[1]}
               </h1>
             </div>
-            <motion.h1
-              className="font-extrabold text-6xl text-center"
-            >
+            <motion.h1 className="font-extrabold text-6xl text-center">
               $ {balance}{" "}
               <span className="font-bold text-xl text-[#7f7f7f]">
                 {getwallet}
