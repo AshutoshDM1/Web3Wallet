@@ -1,3 +1,4 @@
+"use client"
 import AddWallet from "@/components/AddWallet";
 import Footer from "@/components/Footer";
 import MnemonicDisplay from "@/components/MnemonicDisplay";

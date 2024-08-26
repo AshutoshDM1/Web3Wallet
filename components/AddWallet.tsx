@@ -22,7 +22,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const AddWallet = () => {
   const router = useRouter();
@@ -31,7 +31,13 @@ const AddWallet = () => {
   const [show, setShow] = useState(true);
   const mnemonic = useRecoilValue(mnemonicState);
 
-  const getwallet = localStorage.getItem("wallet");
+  const [getWallet, setGetWallet] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setGetWallet(localStorage.getItem("wallet"));
+    }
+  }, []);
 
   const handleRemoveAllWallets = () => {
     setWalletNo([]);
@@ -44,15 +50,17 @@ const AddWallet = () => {
   };
 
   const handleChangeWalletType = () => {
-    localStorage.removeItem("wallet");
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("wallet");
+    }
     setWallet("");
     setWalletNo([]);
-    toast.warning("All Wallets Removed , Select You Bitcoin");
+    toast.warning("All Wallets Removed, Select Your Blockchain");
     router.push("/");
   };
 
   const walletType =
-    getwallet === "Ethereum" ? 60 : getwallet === "Solana" ? 501 : 0;
+    getWallet === "Ethereum" ? 60 : getWallet === "Solana" ? 501 : 0;
 
   const handleAddWallet = () => {
     const seed = mnemonicToSeedSync(mnemonic.join(" "));

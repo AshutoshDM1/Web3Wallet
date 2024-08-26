@@ -5,10 +5,16 @@ import { walletState } from "@/state/atoms";
 import { motion, AnimatePresence } from "framer-motion";
 
 type BlockChainProps = {};
+
 const BlockChain: React.FC<BlockChainProps> = () => {
   const [walletSee, setWalletsee] = useRecoilState(walletState);
-  const wallet = localStorage.getItem("wallet");
-  console.log(wallet)
+
+  const handleButtonClick = (walletType: string) => {
+    setWalletsee(walletType);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("wallet", walletType);
+    }
+  };
 
   return (
     <>
@@ -17,7 +23,7 @@ const BlockChain: React.FC<BlockChainProps> = () => {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20  }}
+            exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
             className="h-[30%] w-full flex flex-col justify-center gap-5 md:px-6"
           >
@@ -29,19 +35,13 @@ const BlockChain: React.FC<BlockChainProps> = () => {
             </h1>
             <div className="flex flex-wrap md:gap-4 gap-2">
               <Button
-                onClick={() => {
-                  setWalletsee("Solana");
-                  localStorage.setItem("wallet", "Solana");
-                }}
+                onClick={() => handleButtonClick("Solana")}
                 className="md:w-24 w-full"
               >
                 Solana
               </Button>
               <Button
-                onClick={() => {
-                  setWalletsee("Ethereum");
-                  localStorage.setItem("wallet", "Ethereum");
-                }}
+                onClick={() => handleButtonClick("Ethereum")}
                 className="md:w-28 w-full"
               >
                 Ethereum
