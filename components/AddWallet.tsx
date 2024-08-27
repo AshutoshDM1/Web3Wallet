@@ -188,22 +188,24 @@ const AddWallet = () => {
                 <h1 className="text-2xl pt-8 font-semibold flex items-center pb-5">
                   Private Key
                 </h1>
-                <div className="flex items-center justify-between ">
+                <div className="flex items-center justify-between break-words">
                   {show ? (
-                    <h2 className="break-words">
+                    <h2 className="w-[90%] break-words">
                       ••••••••••••••••••••••••••••••••••••••••••••••••••••••
                     </h2>
                   ) : (
-                    <h2 className="break-words">{wallet.privateKey}</h2>
+                    <h2 className=" w-[90%]  md:w-[96%] break-words">
+                      {wallet.privateKey}
+                    </h2>
                   )}
                   {show ? (
                     <Eye
-                      className="cursor-pointer"
+                      className="w-[20px] cursor-pointer"
                       onClick={() => setShow(!show)}
                     />
                   ) : (
                     <EyeOff
-                      className="cursor-pointer"
+                      className="w-[20px] cursor-pointer"
                       onClick={() => setShow(!show)}
                     />
                   )}

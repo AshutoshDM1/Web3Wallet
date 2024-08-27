@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <nav className="md:h-[8vh] h-[4vh] w-full flex justify-between items-center ">
       <div className="flex justify-center items-center gap-2">
-        <Box className="md:size-8 size-6" />
+        <Box className="md:size-8 size-6"  />
         <div className="flex flex-col gap-4">
           <span className="md:text-3xl tracking-tighter text-lg font-extrabold text-primary flex gap-2 items-center">
             Web3 Wallet{" "}
