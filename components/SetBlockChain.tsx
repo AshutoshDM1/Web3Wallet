@@ -25,24 +25,24 @@ const BlockChain: React.FC<BlockChainProps> = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
-            className="h-[30%] w-full flex flex-col justify-center gap-5 md:px-6"
+            className="flex h-[30%] w-full flex-col justify-center gap-5 md:px-6"
           >
-            <h1 className="md:text-5xl text-3xl md:font-bold font-extrabold">
+            <h1 className="text-3xl font-extrabold md:text-5xl md:font-bold">
               We support Multiple Blockchains
             </h1>
-            <h1 className="md:text-xl text-lg dark:text-zinc-400 text-zinc-900 font-medium">
+            <h1 className="text-lg font-medium text-zinc-900 dark:text-zinc-400 md:text-xl">
               Choose a blockchain to get started.
             </h1>
-            <div className="flex flex-wrap md:gap-4 gap-2">
+            <div className="flex flex-wrap gap-2 md:gap-4">
               <Button
                 onClick={() => handleButtonClick("Solana")}
-                className="md:w-24 w-full"
+                className="w-full md:w-24"
               >
                 Solana
               </Button>
               <Button
                 onClick={() => handleButtonClick("Ethereum")}
-                className="md:w-28 w-full"
+                className="w-full md:w-28"
               >
                 Ethereum
               </Button>

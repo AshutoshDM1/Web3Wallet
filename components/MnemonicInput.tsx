@@ -20,15 +20,17 @@ const MnemonicInput: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="h-[30%] w-full flex flex-col justify-center md:gap-5 gap-2 md:px-6"
+            className="flex h-[30%] w-full flex-col justify-center gap-2 md:gap-5 md:px-6"
           >
-            <h1 className="md:text-5xl text-3xl md:font-bold font-extrabold">Secret Recovery Phrase</h1>
-            <h1 className="md:text-xl text-lg dark:text-zinc-400 text-zinc-900 font-medium">
+            <h1 className="text-3xl font-extrabold md:text-5xl md:font-bold">
+              Secret Recovery Phrase
+            </h1>
+            <h1 className="text-lg font-medium text-zinc-900 dark:text-zinc-400 md:text-xl">
               Save these words in a safe place.
             </h1>
-            <div className="flex flex-wrap gap-4 mt-2">
+            <div className="mt-2 flex flex-wrap gap-4">
               <Input
-                className="dark:bg-black dark:border-white"
+                className="dark:border-white dark:bg-black"
                 placeholder="Enter your secret phrase Or Leave it Blank to Generate"
               />
               <Button

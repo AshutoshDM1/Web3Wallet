@@ -5,13 +5,13 @@ import { ModeToggle } from "./ModeToggle";
 
 const Navbar = () => {
   return (
-    <nav className="md:h-[8vh] h-[4vh] w-full flex justify-between items-center ">
-      <div className="flex justify-center items-center gap-2">
-        <Box className="md:size-8 size-6"  />
+    <nav className="flex h-[4vh] w-full items-center justify-between md:h-[8vh]">
+      <div className="flex items-center justify-center gap-2">
+        <Box className="size-6 md:size-8" />
         <div className="flex flex-col gap-4">
-          <span className="md:text-3xl tracking-tighter text-lg font-extrabold text-primary flex gap-2 items-center">
+          <span className="flex items-center gap-2 text-lg font-extrabold tracking-tighter text-primary md:text-3xl">
             Web3 Wallet{" "}
-            <span className="rounded-full text-xs md:text-base flex gap-1 bg-primary/10 border border-primary/50 px-2">
+            <span className="flex gap-1 rounded-full border border-primary/50 bg-primary/10 px-2 text-xs md:text-base">
               v 1.0.0
             </span>
           </span>
@@ -22,17 +22,17 @@ const Navbar = () => {
         rel="noopener noreferrer"
         href="https://github.com/keshav-exe/projekt-kosh"
       >
-        <h1 className="font-bold text-2xl tracking-tighter leading-none hidden md:block">
+        <h1 className="hidden text-2xl font-bold leading-none tracking-tighter md:block">
           Inspired By Kosh
         </h1>
       </a>
-      <div className="items-center gap-2 justify-center flex">
+      <div className="flex items-center justify-center gap-2">
         <a
           target="_blank"
           rel="noopener noreferrer"
           href="https://github.com/AshutoshDM1/Web3Wallet"
         >
-          <h1 className="font-bold text-2xl tracking-tighter leading-none hidden md:block">
+          <h1 className="hidden text-2xl font-bold leading-none tracking-tighter md:block">
             My GitHub
           </h1>
         </a>

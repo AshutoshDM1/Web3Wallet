@@ -25,7 +25,6 @@ export const mnemonicState = atom<string[]>({
 });
 
 type Wallet = {
-
   privateKey: string;
   publicKey: string;
 };

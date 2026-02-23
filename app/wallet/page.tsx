@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import AddWallet from "@/components/AddWallet";
 import Footer from "@/components/Footer";
 import MnemonicDisplay from "@/components/MnemonicDisplay";
@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 const MakeWallet = () => {
   return (
     <>
-      <div className="max-w-7xl mx-auto flex flex-col gap-4 p-4 min-h-[94vh] dark:bg-[#0A0A0A]">
+      <div className="mx-auto flex min-h-[94vh] max-w-7xl flex-col gap-4 p-4 dark:bg-[#0A0A0A]">
         <Navbar />
         <MnemonicDisplay />
         <AddWallet />

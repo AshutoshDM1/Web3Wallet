@@ -20,11 +20,11 @@ export function ModeToggle() {
       window.matchMedia("(prefers-color-scheme: dark)").matches);
 
   return (
-    <div className="flex items-center md:gap-2 gap-0.5">
+    <div className="flex items-center gap-0.5 md:gap-2">
       <Sun
         className={`h-5 w-5 ${isDarkMode ? "text-primary" : "text-primary"}`}
       />
-      <Switch 
+      <Switch
         checked={isDarkMode}
         onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
       />

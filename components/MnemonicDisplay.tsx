@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Copy } from "lucide-react";
-import { toast } from "sonner"
+import { toast } from "sonner";
 
 const MnemonicDisplay: React.FC = () => {
   const mnemonic = useRecoilValue(mnemonicState);
@@ -22,11 +22,13 @@ const MnemonicDisplay: React.FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: .3 }}
-            className="min-h-fit border-[1px] border-[#6363637c] w-full rounded-md gap-10 md:p-8 p-3"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="min-h-fit w-full gap-10 rounded-md border-[1px] border-[#6363637c] p-3 md:p-8"
           >
-            <div className="flex justify-between items-center">
-              <h1 className="md:text-3xl text-2xl font-bold">Your Secret Phrase</h1>
+            <div className="flex items-center justify-between">
+              <h1 className="text-2xl font-bold md:text-3xl">
+                Your Secret Phrase
+              </h1>
               <Button
                 onClick={() => setShowMnemonic(!showMnemonic)}
                 variant="ghost"
@@ -46,7 +48,7 @@ const MnemonicDisplay: React.FC = () => {
                   duration: 0.3,
                   ease: "easeInOut",
                 }}
-                className="flex flex-col w-full items-center justify-center"
+                className="flex w-full flex-col items-center justify-center"
                 onClick={() => copyToClipboard(mnemonic.join(" "))}
               >
                 <motion.div
@@ -56,18 +58,18 @@ const MnemonicDisplay: React.FC = () => {
                     duration: 0.5,
                     ease: "easeInOut",
                   }}
-                  className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 justify-center w-full items-center mx-auto my-8"
+                  className="mx-auto my-8 grid w-full grid-cols-2 items-center justify-center gap-2 md:grid-cols-3 lg:grid-cols-4"
                 >
                   {mnemonic.map((word, index) => (
                     <p
                       key={index}
-                      className="md:text-lg bg-foreground/5 hover:bg-foreground/10 transition-all duration-300 rounded-lg p-4"
+                      className="rounded-lg bg-foreground/5 p-4 transition-all duration-300 hover:bg-foreground/10 md:text-lg"
                     >
                       {word}
                     </p>
                   ))}
                 </motion.div>
-                <div className="cursor-pointer text-sm md:text-base text-primary/50 flex w-full gap-2 items-center group-hover:text-primary/80 transition-all duration-300">
+                <div className="flex w-full cursor-pointer items-center gap-2 text-sm text-primary/50 transition-all duration-300 group-hover:text-primary/80 md:text-base">
                   <Copy className="size-4" /> Click Anywhere To Copy
                 </div>
               </motion.div>

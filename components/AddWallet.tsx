@@ -98,7 +98,7 @@ const AddWallet = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3, delay: 0.8 }}
-          className="h-fit w-full py-8 flex flex-wrap gap-5 justify-between items-center"
+          className="flex h-fit w-full flex-wrap items-center justify-between gap-5 py-8"
         >
           <h1 className="text-5xl font-bold">{wallet} Wallet</h1>
           <div className="flex flex-wrap gap-4">
@@ -149,7 +149,7 @@ const AddWallet = () => {
             </AlertDialog>
           </div>
         </motion.div>
-        <div className="min-h-[65vh] max-h-fit w-full flex flex-col gap-8 pb-10">
+        <div className="flex max-h-fit min-h-[65vh] w-full flex-col gap-8 pb-10">
           {WalletNo.map((wallet, index) => (
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -157,10 +157,10 @@ const AddWallet = () => {
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.5 }}
               key={index}
-              className="h-fit p-8 border-[1px] border-[#6363637c] rounded-xl w-full flex-col flex justify-center items-center"
+              className="flex h-fit w-full flex-col items-center justify-center rounded-xl border-[1px] border-[#6363637c] p-8"
             >
-              <div className="w-full flex justify-between items-center">
-                <h1 className="text-3xl font-semibold flex justify-center items-center">
+              <div className="flex w-full items-center justify-between">
+                <h1 className="flex items-center justify-center text-3xl font-semibold">
                   Wallet {index + 1}
                 </h1>
                 <div className="flex gap-3">
@@ -176,16 +176,16 @@ const AddWallet = () => {
                     onClick={() => handleRemoveWallets(index)}
                     className="px-2"
                   >
-                    <Trash className="text-3xl w-full h-full" />
+                    <Trash className="h-full w-full text-3xl" />
                   </Button>
                 </div>
               </div>
               <div className="h-fit w-full pt-10">
-                <h1 className="text-2xl font-semibold flex items-center pb-5">
+                <h1 className="flex items-center pb-5 text-2xl font-semibold">
                   Public Key
                 </h1>
                 <h2 className="break-words">{wallet.publicKey}</h2>
-                <h1 className="text-2xl pt-8 font-semibold flex items-center pb-5">
+                <h1 className="flex items-center pb-5 pt-8 text-2xl font-semibold">
                   Private Key
                 </h1>
                 <div className="flex items-center justify-between break-words">
@@ -194,7 +194,7 @@ const AddWallet = () => {
                       ••••••••••••••••••••••••••••••••••••••••••••••••••••••
                     </h2>
                   ) : (
-                    <h2 className=" w-[90%]  md:w-[96%] break-words">
+                    <h2 className="w-[90%] break-words md:w-[96%]">
                       {wallet.privateKey}
                     </h2>
                   )}
