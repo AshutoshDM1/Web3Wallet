@@ -72,7 +72,7 @@ const Wallet: React.FC = () => {
                 {getwallet}
               </span>{" "}
             </motion.h1>
-            <div className="grid w-[40vh] grid-cols-1 place-items-center rounded-sm bg-foreground/10 px-1 py-1 font-bold xl:w-fit xl:grid-cols-3">
+            {/* <div className="grid w-[40vh] grid-cols-1 place-items-center rounded-sm bg-foreground/10 px-1 py-1 font-bold xl:w-fit xl:grid-cols-3">
               <div className="flex w-full cursor-pointer items-center justify-center rounded-sm px-16 py-3 text-2xl duration-150 ease-in-out hover:bg-blue-500">
                 <SendHorizontal />
                 <span>SEND</span>
@@ -85,7 +85,7 @@ const Wallet: React.FC = () => {
                 <ArrowLeftRight />
                 <span>SWAP</span>
               </div>
-            </div>
+            </div> */}
           </motion.div>
         </motion.div>
       </AnimatePresence>
